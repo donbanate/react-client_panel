@@ -4,11 +4,12 @@ import PropTypes from "prop-types";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
+import Spinner from "../layouts/Spinner";
 
 class Clients extends Component {
   static propTypes = {
     firestore: PropTypes.object.isRequired,
-    clients: PropTypes.array 
+    clients: PropTypes.array
   };
 
   render() {
@@ -57,7 +58,7 @@ class Clients extends Component {
         </Fragment>
       );
     } else {
-      return <h1>Loading...</h1>;
+      return <Spinner />;
     }
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 
 class AppNavBar extends Component {
   render() {
@@ -23,27 +24,14 @@ class AppNavBar extends Component {
           >
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <a className="nav-link text-white" href="/">
-                  <strong>Client Panel</strong>{" "}
-                  <span className="sr-only">(current)</span>
-                </a>
+                <Link to="/" className="nav-link text-white">
+                  <strong>Client Panel</strong>
+                </Link>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="/"
-                  id="dropdown10"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
+              <li className="nav-item">
+                <Link to="/" className="nav-link">
                   Dashboard
-                </a>
-                <div className="dropdown-menu" aria-labelledby="dropdown10">
-                  <a className="dropdown-item" href="/">
-                    Action
-                  </a>
-                </div>
+                </Link>
               </li>
             </ul>
           </div>

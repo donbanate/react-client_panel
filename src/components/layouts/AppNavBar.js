@@ -15,7 +15,7 @@ class AppNavBar extends Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon" />
+            <i class="fas fa-piggy-bank text-white" />
           </button>
 
           <div

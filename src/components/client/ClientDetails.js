@@ -8,6 +8,13 @@ import Spinner from "../layouts/Spinner";
 import classnames from "classnames";
 
 class ClientDetails extends Component {
+  state = {
+    updateBalance: true
+  };
+
+  handleEdit = () =>
+    this.setState({ updateBalance: !this.state.updateBalance });
+
   render() {
     const { client } = this.props;
 
@@ -40,13 +47,20 @@ class ClientDetails extends Component {
                 })}
               >
                 ${parseFloat(client.balance).toFixed(2)}
-              </span>
+              </span>{" "}
+              <i
+                className="fas fa-pen-alt fa-sm"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Edit balance"
+                onClick={this.handleEdit}
+              />
             </h3>
             <div className="card-body">
               <div className="row">
                 <div className="col-md-8 col-sm-12">
-                  <div class="table-responsive">
-                    <table class="table table-bordered">
+                  <div className="table-responsive">
+                    <table className="table table-bordered">
                       <tbody>
                         <tr>
                           <th scope="row">Client ID</th>
@@ -77,8 +91,7 @@ class ClientDetails extends Component {
                       <input
                         type="text"
                         name="balance"
-                        readOnly
-                        value={parseFloat(client.balance).toFixed(2)}
+                        readOnly={this.state.updateBalance}
                         className="form-control"
                       />
                     </div>

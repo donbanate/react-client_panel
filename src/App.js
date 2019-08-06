@@ -7,6 +7,7 @@ import store from "./store";
 import AppNavBar from "./components/layouts/AppNavBar";
 import Dashboard from "./components/layouts/Dashboard";
 import AddClient from "./components/client/AddClient";
+import ClientDetails from "./components/client/ClientDetails";
 import "./App.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/client/add" component={AddClient} />
+              <Route exact path="/client/details/:id" component={ClientDetails} />
             </Switch>
           </div>
         </div>

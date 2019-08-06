@@ -31,6 +31,7 @@ class AddClient extends Component {
       newClient.balance = 0;
     }
 
+    // Uploads to firebase
     firestore
       .add({ collection: "clients" }, newClient)
       .then(() => history.push("/"));

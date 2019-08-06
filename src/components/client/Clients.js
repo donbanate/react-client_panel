@@ -11,22 +11,26 @@ class Clients extends Component {
     totalOwed: null
   };
 
-  static getDerivedStateFromProps(props, state) {
-    const { clients } = props;
-
-    if (clients) {
-      const total = clients.reduce((total, client) => {
-        return total + parseFloat(client.balance.toString()).toFixed(1);
-      }, 0);
-      return { totalOwed: total };
-    }
-    return null;
-  }
-
   static propTypes = {
     firestore: PropTypes.object.isRequired,
     clients: PropTypes.array
   };
+
+  static getDerivedStateFromProps(props) {
+    const { clients } = props;
+
+    if (clients) {
+      const total = clients.reduce((total, client) => {
+        console.log(total, `${client}`);
+
+        return total + parseFloat(client.balance.toString());
+      }, 0);
+
+      // Updates the state
+      return { totalOwed: total };
+    }
+    return null;
+  }
 
   render() {
     const { clients } = this.props;

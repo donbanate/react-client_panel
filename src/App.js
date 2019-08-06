@@ -6,25 +6,26 @@ import store from "./store";
 
 import AppNavBar from "./components/layouts/AppNavBar";
 import Dashboard from "./components/layouts/Dashboard";
+import AddClient from "./components/client/AddClient";
 import "./App.css";
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
-      <div className="App">
-        <header>
-          <AppNavBar />
-        </header>
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={Dashboard} />
-          </Switch>
+        <div className="App">
+          <header>
+            <AppNavBar />
+          </header>
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/client/add" component={AddClient} />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
     </Provider>
-    
   );
 }
 

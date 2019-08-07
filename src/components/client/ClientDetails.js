@@ -9,15 +9,49 @@ import classnames from "classnames";
 
 class ClientDetails extends Component {
   state = {
-    updateBalance: true
+    updateBalance: true,
+    balance: ""
   };
 
-  handleEdit = () =>
-    this.setState({ updateBalance: !this.state.updateBalance });
+  static propTypes = {
+    firestore: PropTypes.object.isRequired
+  };
+
+  onHandleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  enableUpdateBalance = () => {
+    this.setState({
+      updateBalance: !this.state.updateBalance,
+      balance: this.props.client.balance
+    });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+
+    const { client, firestore } = this.props;
+    const { balance } = this.state;
+
+    const clientUpdate = {
+      balance: parseFloat(balance)
+    };
+
+    // Update Firestore
+    firestore.update({ collection: "clients", doc: client.id }, clientUpdate);
+  };
+
+  onDeleteClick = () => {
+    const { client, firestore } = this.props;
+
+    firestore
+      .delete({ collection: "clients", doc: client.id })
+      .then(this.props.history.push("/"));
+  };
 
   render() {
     const { client } = this.props;
-
     if (client) {
       return (
         <Fragment>
@@ -32,7 +66,9 @@ class ClientDetails extends Component {
                 <Link to={`/client/edit/${client.id}`} className="btn btn-dark">
                   Edit
                 </Link>
-                <button className="btn btn-danger">Delete</button>
+                <button onClick={this.onDeleteClick} className="btn btn-danger">
+                  Delete
+                </button>
               </div>
             </div>
           </div>
@@ -53,7 +89,7 @@ class ClientDetails extends Component {
                 data-toggle="tooltip"
                 data-placement="top"
                 title="Edit balance"
-                onClick={this.handleEdit}
+                onClick={this.enableUpdateBalance}
               />
             </h3>
             <div className="card-body">
@@ -85,15 +121,27 @@ class ClientDetails extends Component {
                   </div>
                 </div>
                 <div className="col-md-4 col-sm-12">
-                  <form>
-                    <div className="form">
-                      <label htmlFor="balance">Balance</label>
-                      <input
-                        type="text"
-                        name="balance"
-                        readOnly={this.state.updateBalance}
-                        className="form-control"
-                      />
+                  <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                      <label htmlFor="balance">Update Balance *</label>
+                      <div className="input-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="balance"
+                          readOnly={this.state.updateBalance}
+                          onChange={this.onHandleChange}
+                          value={this.state.balance}
+                        />
+                        <div className="input-group-append">
+                          <input
+                            type="submit"
+                            readOnly={this.state.updateBalance}
+                            className="btn btn-primary"
+                            value="Save"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </form>
                 </div>

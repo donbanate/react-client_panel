@@ -38,7 +38,7 @@ class EditClientDetails extends Component {
           : this.balanceInput.current.value
     };
 
-    //init update
+    //init update and redirects to dashboard
     firestore
       .update(
         {

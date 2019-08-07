@@ -101,11 +101,10 @@ class AddClient extends Component {
                   type="text"
                   className="form-control"
                   name="balance"
-                  minLength="2"
                   onChange={this.onChange}
                   value={this.state.balance}
                 />
-              </div> 
+              </div>
               <input
                 type="submit"
                 value="Submit"

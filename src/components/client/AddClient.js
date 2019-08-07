@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { compose } from "redux";
-import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 
 class AddClient extends Component {
@@ -107,7 +105,7 @@ class AddClient extends Component {
                   onChange={this.onChange}
                   value={this.state.balance}
                 />
-              </div>
+              </div> 
               <input
                 type="submit"
                 value="Submit"

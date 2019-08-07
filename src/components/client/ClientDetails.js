@@ -39,7 +39,13 @@ class ClientDetails extends Component {
     };
 
     // Update Firestore
-    firestore.update({ collection: "clients", doc: client.id }, clientUpdate);
+    firestore.update(
+      {
+        collection: "clients",
+        doc: client.id
+      },
+      clientUpdate
+    );
   };
 
   onDeleteClick = () => {

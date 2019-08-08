@@ -9,6 +9,7 @@ import Dashboard from "./components/layouts/Dashboard";
 import AddClient from "./components/client/AddClient";
 import ClientDetails from "./components/client/ClientDetails";
 import EditClientDetails from "./components/client/EditClientDetails";
+import Login from "./components/auth/Login";
 
 import "./App.css";
 
@@ -34,6 +35,7 @@ function App() {
                 path="/client/edit/:id"
                 component={EditClientDetails}
               />
+              <Route exact path="/login" component={Login} />
             </Switch>
           </div>
         </div>

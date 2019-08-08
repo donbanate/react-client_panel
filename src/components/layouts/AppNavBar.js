@@ -24,6 +24,12 @@ class AppNavBar extends Component {
       return { isAuthenticated: true };
     }
   }
+  onLogoutClick = e => {
+    e.preventDefault();
+
+    const { firebase } = this.props;
+    firebase.logout();
+  };
 
   render() {
     const { auth } = this.props;
@@ -78,15 +84,11 @@ class AppNavBar extends Component {
                 </ul>
               ) : (
                 <ul className="navbar-nav">
-                  <li className="nav-ite">
-                    <a
-                      href="#!"
-                      className="nav-link"
-                      onClick={this.onLogoutClick}
-                    >
+                  <li className="nav-item">
+                    <Link to="/login" className="nav-link">
                       <i className="fas fa-sign-out-alt" />{" "}
                       <small>Sign in</small>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               )}

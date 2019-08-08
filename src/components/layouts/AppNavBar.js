@@ -21,7 +21,7 @@ class AppNavBar extends Component {
     if (auth.uid) {
       return { isAuthenticated: true };
     } else {
-      return { isAuthenticated: true };
+      return { isAuthenticated: false };
     }
   }
   onLogoutClick = e => {
@@ -61,10 +61,10 @@ class AppNavBar extends Component {
                     <strong>Client Panel</strong>
                   </Link>
                 ) : (
-                  <strong>Client Panel</strong>
+                  <strong className="nav-link text-white">Client Panel</strong>
                 )}
               </li>
-              {isAuthenticated ? (
+              {isAuthenticated && (
                 <ul className="navbar-nav">
                   <li className="nav-item">
                     <a href="#!" className="nav-link">
@@ -80,15 +80,6 @@ class AppNavBar extends Component {
                       <i className="fas fa-sign-out-alt" />{" "}
                       <small>Sign out</small>
                     </a>
-                  </li>
-                </ul>
-              ) : (
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <Link to="/login" className="nav-link">
-                      <i className="fas fa-sign-out-alt" />{" "}
-                      <small>Sign in</small>
-                    </Link>
                   </li>
                 </ul>
               )}

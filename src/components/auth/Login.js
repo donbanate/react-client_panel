@@ -19,6 +19,7 @@ class Login extends Component {
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
+  //Login
   onSubmit = e => {
     e.preventDefault();
     const { firebase, notifyUser } = this.props;
@@ -80,7 +81,7 @@ class Login extends Component {
 export default compose(
   firebaseConnect(),
   connect(
-    (state, props) => ({
+    state => ({
       notify: state.notify
     }),
     { notifyUser }

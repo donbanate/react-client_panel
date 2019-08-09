@@ -12,7 +12,8 @@ class AppNavBar extends Component {
 
   static propTypes = {
     firebase: PropTypes.object.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    settings: PropTypes.object.isRequired
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -72,6 +73,11 @@ class AppNavBar extends Component {
                     </a>
                   </li>
                   <li className="nav-item">
+                    <Link to="/settings" className="nav-link">
+                      Settings
+                    </Link>
+                  </li>
+                  <li className="nav-item">
                     <a
                       href="#!"
                       className="nav-link"
@@ -94,6 +100,7 @@ class AppNavBar extends Component {
 export default compose(
   firebaseConnect(),
   connect((state, props) => ({
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    settings: state.settings
   }))
 )(AppNavBar);

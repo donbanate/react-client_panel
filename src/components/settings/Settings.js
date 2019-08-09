@@ -16,6 +16,21 @@ class Settings extends Component {
     allowRegistration: PropTypes.func.isRequired
   };
 
+  allowRegistrationChange = () => {
+    const { allowRegistration } = this.props;
+    allowRegistration();
+  };
+
+  disableBalanceOnAddChange = () => {
+    const { setDisableBalanceOnAdd } = this.props;
+    setDisableBalanceOnAdd();
+  };
+
+  disableBalanceOnEditChange = () => {
+    const { setDisableBalanceOnEdit } = this.props;
+    setDisableBalanceOnEdit();
+  };
+
   render() {
     const {
       disableBalanceOnAdd,

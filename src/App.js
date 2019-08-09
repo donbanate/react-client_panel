@@ -12,6 +12,7 @@ import ClientDetails from "./components/client/ClientDetails";
 import EditClientDetails from "./components/client/EditClientDetails";
 import Settings from "./components/settings/Settings";
 import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
 
 import "./App.css";
 
@@ -49,6 +50,11 @@ function App() {
                 exact
                 path="/login"
                 component={UserIsNotAuthenticated(Login)}
+              />
+              <Route
+                exact
+                path="/register"
+                component={UserIsNotAuthenticated(Register)}
               />
               <Route
                 exact

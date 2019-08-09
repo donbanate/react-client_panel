@@ -42,8 +42,20 @@ const rootReducer = combineReducers({
   settings: settingsReducer
 });
 
+//Check settings on local storage
+if (localStorage.getItem("settings") === null) {
+  const defaultSettings = {
+    disableBalanceOnAdd: true,
+    disableBalanceOnEdit: false,
+    allowRegistration: false
+  };
+
+  // Set local storage value
+  localStorage.setItem("settings", JSON.stringify(defaultSettings));
+}
+
 // Create initial state
-const initialState = {};
+const initialState = { settings: JSON.parse(localStorage.getItem("settings")) };
 
 // Create Store
 const store = createStoreWithFirebase(

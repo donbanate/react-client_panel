@@ -35,6 +35,7 @@ class AppNavBar extends Component {
   render() {
     const { auth } = this.props;
     const { isAuthenticated } = this.state;
+    const { allowRegistration } = this.props.settings;
 
     return (
       <Fragment>
@@ -59,10 +60,15 @@ class AppNavBar extends Component {
               <li className="nav-item active">
                 {isAuthenticated ? (
                   <Link to="/" className="nav-link text-white">
-                    <strong>Client Panel</strong>
+                    <strong style={{ fontSize: "2em" }}>Client Panel</strong>
                   </Link>
                 ) : (
-                  <strong className="nav-link text-white">Client Panel</strong>
+                  <strong
+                    className="nav-link text-white"
+                    style={{ fontSize: "2em" }}
+                  >
+                    Client Panel
+                  </strong>
                 )}
               </li>
               {isAuthenticated && (
@@ -90,6 +96,20 @@ class AppNavBar extends Component {
                 </ul>
               )}
             </ul>
+            {allowRegistration && !isAuthenticated ? (
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link to="/login" className="nav-item mr-2 text-white">
+                    Login
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/register" className="nav-item text-white">
+                    Register
+                  </Link>
+                </li>
+              </ul>
+            ) : null}
           </div>
         </nav>
       </Fragment>

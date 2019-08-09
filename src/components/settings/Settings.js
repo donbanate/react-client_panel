@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import {
   setDisableBalanceOnAdd,
   setDisableBalanceOnEdit,
-  allowRegistration
+  setAllowRegistration
 } from "../../actions/settingsAction";
 
 class Settings extends Component {
@@ -13,12 +13,12 @@ class Settings extends Component {
     settings: PropTypes.object.isRequired,
     setDisableBalanceOnAdd: PropTypes.func.isRequired,
     setDisableBalanceOnEdit: PropTypes.func.isRequired,
-    allowRegistration: PropTypes.func.isRequired
+    setAllowRegistration: PropTypes.func.isRequired
   };
 
   allowRegistrationChange = () => {
-    const { allowRegistration } = this.props;
-    allowRegistration();
+    const { setAllowRegistration } = this.props;
+    setAllowRegistration();
   };
 
   disableBalanceOnAddChange = () => {
@@ -112,7 +112,7 @@ export default connect(
     settings: state.settings
   }),
   {
-    allowRegistration,
+    setAllowRegistration,
     setDisableBalanceOnAdd,
     setDisableBalanceOnEdit
   }

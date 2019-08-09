@@ -7,9 +7,7 @@ import { firebaseConnect } from "react-redux-firebase";
 
 class AppNavBar extends Component {
   state = {
-    isAuthenticated: false,
-    activeLoginNav: true,
-    activeRegisterNav: false
+    isAuthenticated: false
   };
 
   static propTypes = {
@@ -27,17 +25,6 @@ class AppNavBar extends Component {
       return { isAuthenticated: false };
     }
   }
-
-  onChangeActive = () => {
-    const { activeLoginNav, activeRegisterNav } = this.state;
-
-    if (activeLoginNav) {
-      this.setState({
-        activeLoginNav: !activeLoginNav,
-        activeRegisterNav: !activeRegisterNav
-      });
-    }
-  };
 
   onLogoutClick = e => {
     e.preventDefault();
@@ -113,17 +100,13 @@ class AppNavBar extends Component {
             ) : null}
             {allowRegistration && !isAuthenticated ? (
               <ul className="navbar-nav mr-auto">
-                <li className="nav-item active" onClick={this.onChangeActive}>
+                <li className="nav-item active">
                   <Link to="/login" className="nav-link">
                     Login
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link
-                    to="/register"
-                    className="nav-link"
-                    onClick={this.onChangeActive}
-                  >
+                  <Link to="/register" className="nav-link">
                     Register
                   </Link>
                 </li>

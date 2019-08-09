@@ -7,7 +7,9 @@ import { firebaseConnect } from "react-redux-firebase";
 
 class AppNavBar extends Component {
   state = {
-    isAuthenticated: false
+    isAuthenticated: false,
+    activeLoginNav: true,
+    activeRegisterNav: false
   };
 
   static propTypes = {
@@ -25,6 +27,18 @@ class AppNavBar extends Component {
       return { isAuthenticated: false };
     }
   }
+
+  onChangeActive = () => {
+    const { activeLoginNav, activeRegisterNav } = this.state;
+
+    if (activeLoginNav) {
+      this.setState({
+        activeLoginNav: !activeLoginNav,
+        activeRegisterNav: !activeRegisterNav
+      });
+    }
+  };
+
   onLogoutClick = e => {
     e.preventDefault();
 
@@ -39,72 +53,77 @@ class AppNavBar extends Component {
 
     return (
       <Fragment>
-        <nav className="navbar navbar-expand-lg navbar-light bg-success">
+        <nav className="navbar navbar-expand-lg mt-1 navbar-dark bg-success rounded">
+          {isAuthenticated ? (
+            <Link to="/" className="navbar-brand">
+              Client Panel
+            </Link>
+          ) : (
+            <a className="navbar-brand" href="#!">
+              Client Panel
+            </a>
+          )}
           <button
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#navbarsExample10"
-            aria-controls="navbarsExample10"
+            data-target="#navbarsExample09"
+            aria-controls="navbarsExample09"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <i className="fas fa-piggy-bank text-white" />
+            <i className="fas fa-piggy-bank" />
           </button>
 
-          <div
-            className="collapse navbar-collapse justify-content-md-center"
-            id="navbarsExample10"
-          >
-            <ul className="navbar-nav">
-              <li className="nav-item active">
-                {isAuthenticated ? (
-                  <Link to="/" className="nav-link text-white">
-                    <strong style={{ fontSize: "2em" }}>Client Panel</strong>
+          <div className="collapse navbar-collapse" id="navbarsExample09">
+            {isAuthenticated ? (
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item active">
+                  <Link className="nav-link" to="/">
+                    Dashboard <span className="sr-only">(current)</span>
                   </Link>
-                ) : (
-                  <strong
-                    className="nav-link text-white"
-                    style={{ fontSize: "2em" }}
+                </li>
+                <li className="nav-item">
+                  <Link to="/settings" className="nav-link">
+                    Settings
+                  </Link>
+                </li>
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#!"
+                    id="dropdown09"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                   >
-                    Client Panel
-                  </strong>
-                )}
-              </li>
-              {isAuthenticated && (
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <a href="#!" className="nav-link">
-                      {auth.email}
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/settings" className="nav-link">
-                      Settings
-                    </Link>
-                  </li>
-                  <li className="nav-item">
+                    {auth.email}
+                  </a>
+                  <div className="dropdown-menu" aria-labelledby="dropdown09">
                     <a
+                      className="dropdown-item"
                       href="#!"
-                      className="nav-link"
                       onClick={this.onLogoutClick}
                     >
-                      <i className="fas fa-sign-out-alt" />{" "}
-                      <small>Sign out</small>
+                      <i className="fas fa-sign-out-alt" /> Sign out
                     </a>
-                  </li>
-                </ul>
-              )}
-            </ul>
+                  </div>
+                </li>
+              </ul>
+            ) : null}
             {allowRegistration && !isAuthenticated ? (
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link to="/login" className="nav-item mr-2 text-white">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item active" onClick={this.onChangeActive}>
+                  <Link to="/login" className="nav-link">
                     Login
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/register" className="nav-item text-white">
+                  <Link
+                    to="/register"
+                    className="nav-link"
+                    onClick={this.onChangeActive}
+                  >
                     Register
                   </Link>
                 </li>

@@ -21,7 +21,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
-          <header>
+          <header className="container">
             <AppNavBar />
           </header>
           <div className="container">

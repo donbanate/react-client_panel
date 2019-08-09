@@ -22,7 +22,7 @@ class Register extends Component {
     const { allowRegistration } = this.props.settings;
 
     if (!allowRegistration) {
-      this.props.history.push("/");
+      this.props.history.push("/" );
     }
   }
 

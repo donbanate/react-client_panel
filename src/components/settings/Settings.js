@@ -47,7 +47,7 @@ class Settings extends Component {
                   {allowRegistration ? (
                     "Allow Registration"
                   ) : (
-                    <s>Allow Registration</s>
+                    <span className="text-muted">Allow Registration</span>
                   )}
                 </label>
               </div>
@@ -63,7 +63,7 @@ class Settings extends Component {
                   {disableBalanceOnAdd ? (
                     "Disable Balance on add"
                   ) : (
-                    <s>Disable Balance on add</s>
+                    <span className="text-muted">Disable Balance on add</span>
                   )}
                 </label>
               </div>
@@ -79,7 +79,7 @@ class Settings extends Component {
                   {disableBalanceOnEdit ? (
                     "Disable Balance on edit"
                   ) : (
-                    <s>Disable Balance on edit</s>
+                    <span className="text-muted">Disable Balance on edit</span>
                   )}
                 </label>
               </div>

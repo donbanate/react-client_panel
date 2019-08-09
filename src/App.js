@@ -10,6 +10,7 @@ import Dashboard from "./components/layouts/Dashboard";
 import AddClient from "./components/client/AddClient";
 import ClientDetails from "./components/client/ClientDetails";
 import EditClientDetails from "./components/client/EditClientDetails";
+import Settings from "./components/settings/Settings";
 import Login from "./components/auth/Login";
 
 import "./App.css";
@@ -42,9 +43,18 @@ function App() {
               <Route
                 exact
                 path="/client/edit/:id"
-                component={UserIsAuthenticated(EditClientDetails )}
+                component={UserIsAuthenticated(EditClientDetails)}
               />
-              <Route exact path="/login" component={UserIsNotAuthenticated(Login)} />
+              <Route
+                exact
+                path="/login"
+                component={UserIsNotAuthenticated(Login)}
+              />
+              <Route
+                exact
+                path="/settings"
+                component={UserIsAuthenticated(Settings)}
+              />
             </Switch>
           </div>
         </div>

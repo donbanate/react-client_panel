@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -17,10 +17,76 @@ class Settings extends Component {
   };
 
   render() {
+    const {
+      disableBalanceOnAdd,
+      disableBalanceOnEdit,
+      allowRegistration
+    } = this.props.settings;
     return (
-      <div>
-        <h1>Settings</h1>
-      </div>
+      <Fragment>
+        <div className="row">
+          <div className="col-md-6">
+            <Link to="/" className="btn btn-link">
+              <i className="fas fa-arrow-circle-left" /> Back
+            </Link>
+          </div>
+        </div>
+        <div className="card">
+          <div className="card-header">Edit Settings</div>
+          <div className="card-body">
+            <form>
+              <div className="form-group">
+                <input
+                  type="checkbox"
+                  className="ml-2 mr-3"
+                  name="allowRegistration"
+                  checked={!!allowRegistration}
+                  onChange={this.allowRegistrationChange}
+                />
+                <label htmlFor="allowRegistration">
+                  {allowRegistration ? (
+                    "Allow Registration"
+                  ) : (
+                    <s>Allow Registration</s>
+                  )}
+                </label>
+              </div>
+              <div className="form-group">
+                <input
+                  type="checkbox"
+                  className="ml-2 mr-3"
+                  name="allowRegistration"
+                  checked={!!disableBalanceOnAdd}
+                  onChange={this.disableBalanceOnAddChange}
+                />
+                <label htmlFor="allowRegistration">
+                  {disableBalanceOnAdd ? (
+                    "Disable Balance on add"
+                  ) : (
+                    <s>Disable Balance on add</s>
+                  )}
+                </label>
+              </div>
+              <div className="form-group">
+                <input
+                  type="checkbox"
+                  className="ml-2 mr-3"
+                  name="allowRegistration"
+                  checked={!!disableBalanceOnEdit}
+                  onChange={this.disableBalanceOnEditChange}
+                />
+                <label htmlFor="allowRegistration">
+                  {disableBalanceOnEdit ? (
+                    "Disable Balance on edit"
+                  ) : (
+                    <s>Disable Balance on edit</s>
+                  )}
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </Fragment>
     );
   }
 }

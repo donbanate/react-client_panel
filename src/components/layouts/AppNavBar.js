@@ -35,6 +35,7 @@ class AppNavBar extends Component {
     firebase.logout();
   };
 
+  // Dynamically set active class on what user click on the navigation
   onNavCLickActive = () => {
     const { isLoginNavActive } = this.state;
 

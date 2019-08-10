@@ -50,7 +50,7 @@ class Clients extends Component {
               </h5>
             </div>
           </div>
-          <table className="table table-striped">
+          <table className="table table-bordered table-hover">
             <thead className="thead-inverse">
               <tr>
                 <th>Name</th>
@@ -89,7 +89,7 @@ class Clients extends Component {
 
 export default compose(
   firestoreConnect([{ collection: "clients" }]),
-  connect((state, props) => ({
+  connect(state => ({
     clients: state.firestore.ordered.clients
   }))
 )(Clients);

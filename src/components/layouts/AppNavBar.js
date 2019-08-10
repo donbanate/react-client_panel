@@ -37,9 +37,9 @@ class AppNavBar extends Component {
 
   // Dynamically set active class on what user click on the navigation
   onNavCLickActive = () => {
-    const { isLoginNavActive } = this.state;
+    const { isLoginNavActive, isRegisterNavActive } = this.state;
 
-    if (!isLoginNavActive) {
+    if (!isLoginNavActive && isRegisterNavActive === "active") {
       this.setState({
         isLoginNavActive: "active",
         isRegisterNavActive: null
